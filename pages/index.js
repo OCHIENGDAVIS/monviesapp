@@ -5,6 +5,16 @@ import SideBar from '../components/SideBar';
 import Carousel from '../components/Carousel';
 import MovieList from '../components/MovieList';
 import Footer from '../components/Footer';
+import dbConnect from '../db';
+
+export const getServerSideProps = (context) => {
+  dbConnect();
+  return {
+    props: {
+      movies: [],
+    },
+  };
+};
 
 export default function Home() {
   return (
