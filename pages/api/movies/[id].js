@@ -20,7 +20,7 @@ const handler = async (req, res) => {
         }
         return res.status(200).json({ message: 'success', data: movie });
       } catch (err) {
-        return res.status(400).json({ message: 'error', data: err });
+        return res.status(400).json({ message: 'error', data: err.data });
       }
 
     case 'PATCH':

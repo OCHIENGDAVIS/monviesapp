@@ -1,15 +1,18 @@
-function Movie() {
+import Link from 'next/link';
+
+function Movie({ movie }) {
   return (
     <div className="max-w-[400px]">
       <div className="bg-gray-300 h-24"></div>
       <div>
-        <h3>Item Number</h3>
+        <Link href={`/movies/${movie._id}`}>
+          <h3 className="hover:cursor-pointer text-red-200 bg-gray-700">
+            {movie.name}
+          </h3>
+        </Link>
+
         <p>$24.99</p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci,
-          facilis maxime. Pariatur, ad aperiam nesciunt dolores dignissimos sint
-          nihil quisquam?
-        </p>
+        <p>{movie.genre}</p>
       </div>
       <div className="bg-gray-200 "></div>
     </div>

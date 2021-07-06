@@ -9,7 +9,7 @@ const handler = async (req, res) => {
         await newMovie.save();
         return res.status(200).json({ message: 'success', data: newMovie });
       } catch (err) {
-        return res.status(400).josn({ message: 'error', data: err });
+        return res.status(400).json({ message: 'error', data: err });
       }
     case 'GET':
       try {
