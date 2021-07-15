@@ -5,7 +5,7 @@ function Movie({ movie }) {
     <div className="max-w-[400px]">
       <div className="bg-gray-300 h-24"></div>
       <div>
-        <Link href={`/movies/${movie._id}`}>
+        <Link href={`/movies/${movie._id}`} className="cursor-pointer">
           <h3 className="hover:cursor-pointer text-red-200 bg-gray-700">
             {movie.name}
           </h3>

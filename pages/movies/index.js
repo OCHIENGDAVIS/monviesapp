@@ -14,16 +14,12 @@ export default function Home({ movies }) {
         <title>Movies App</title>
         <meta name="description" content="A Movie rental platform" />
       </Head>
-      <div>
-        <Navbar />
-        <div className="flex">
+      <div className="">
+        <div className="w-screen bg-gray-100 flex pt-10">
           <SideBar />
-          <main className="ml-10 mr-2">
-            <Carousel />
-            <MovieList movies={movies} />
-          </main>
+          <MovieList movies={movies} />
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
   );
@@ -31,6 +27,9 @@ export default function Home({ movies }) {
 export const getStaticProps = async (context) => {
   dbConnect();
   const { data } = await axios.get('http://localhost:3000/api/movies');
+  if (!data.data) {
+    data.data = [];
+  }
 
   return {
     props: {

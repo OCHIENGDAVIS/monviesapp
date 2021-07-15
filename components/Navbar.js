@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 function Navbar() {
   return (
-    <nav className="flex items-center justify-between px-2 bg-gray-700 text-white py-2">
+    <nav className="flex items-center justify-between px-2 bg-gray-700 text-white py-2  fixed w-screen ">
       <div className="text-red-100">
         <Link href="/movies">Movies App </Link>
       </div>

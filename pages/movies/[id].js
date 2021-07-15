@@ -1,19 +1,29 @@
 import axios from 'axios';
+import Head from 'next/dist/next-server/lib/head';
 
-import Navbar from '../../components/Navbar';
-// import dbConnect from '../db';
+import SideBar from '../../components/SideBar';
+import dbConnect from '../../db';
 
 function details({ movie }) {
   return (
     <div>
-      <Navbar />
-      <h3>{movie.name}</h3>
-      <p>{movie.genre}</p>
+      <Head>
+        <title>Movies App | {movie.name}</title>
+        <meta name="description" content="A Movie rental platform" />
+      </Head>
+
+      <div className="pt-10 flex">
+        <SideBar />
+        <div>
+          <h3>{movie.name}</h3>
+          <p>{movie.genre}</p>
+        </div>
+      </div>
     </div>
   );
 }
 export const getStaticProps = async (context) => {
-  // dbConnect();
+  dbConnect();
   const { id } = context.params;
   const { data } = await axios.get(`http://localhost:3000/api/movies/${id}`);
   return {
@@ -25,15 +35,16 @@ export const getStaticProps = async (context) => {
 };
 
 export const getStaticPaths = async () => {
-  // dbConnect();
+  dbConnect();
   const { data } = await axios.get('http://localhost:3000/api/movies');
-  console.log(data.data);
+  if (!data.data) {
+    data.data = [];
+  }
   const staticPaths = data.data.map((movie) => {
     return {
       params: { id: movie._id },
     };
   });
-  console.log(staticPaths);
 
   return {
     fallback: 'blocking',
